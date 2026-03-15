@@ -1,0 +1,24 @@
+2026-03-11 22:50:33,797 - Pipeline started
+2026-03-11 22:50:33,797 - Creating tables
+2026-03-11 22:50:33,797 - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.13.7, Platform: macOS-15.5-arm64-arm-64bit-Mach-O
+2026-03-11 22:50:33,798 - Connecting to GLOBAL Snowflake domain
+2026-03-11 22:50:35,509 - Seeding dimension table
+2026-03-11 22:50:35,510 - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.13.7, Platform: macOS-15.5-arm64-arm-64bit-Mach-O
+2026-03-11 22:50:35,510 - Connecting to GLOBAL Snowflake domain
+2026-03-11 22:50:37,013 - Loading CSV data
+2026-03-11 22:50:40,375 - Deduplicating orders
+2026-03-11 22:50:40,376 - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.13.7, Platform: macOS-15.5-arm64-arm-64bit-Mach-O
+2026-03-11 22:50:40,376 - Connecting to GLOBAL Snowflake domain
+2026-03-11 22:50:41,827 - Creating final dataset
+2026-03-11 22:50:41,827 - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.13.7, Platform: macOS-15.5-arm64-arm-64bit-Mach-O
+2026-03-11 22:50:41,828 - Connecting to GLOBAL Snowflake domain
+2026-03-11 22:50:43,256 - Merging into fact table
+2026-03-11 22:50:43,256 - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.13.7, Platform: macOS-15.5-arm64-arm-64bit-Mach-O
+2026-03-11 22:50:43,256 - Connecting to GLOBAL Snowflake domain
+2026-03-11 22:50:44,184 - Pipeline completed successfully
+2026-03-11 22:50:44,184 - Checking duplicates
+2026-03-11 22:50:44,184 - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.13.7, Platform: macOS-15.5-arm64-arm-64bit-Mach-O
+2026-03-11 22:50:44,185 - Connecting to GLOBAL Snowflake domain
+2026-03-11 22:50:45,206 - sql/check_duplicate_orders.sql returned 1 rows
+2026-03-11 22:50:45,207 - Duplicate orders detected. Stopping pipeline.
+2026-03-11 22:50:45,207 - Pipeline failed: Duplicate orders found
