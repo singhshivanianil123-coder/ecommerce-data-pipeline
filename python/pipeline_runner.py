@@ -16,6 +16,9 @@ try:
     logging.info("Creating tables")
     run_sql_file("sql/create_tables.sql")
 
+    logging.info("Creating Snowflake stage")
+    run_sql_file("sql/create_stage.sql")
+
     logging.info("Seeding dimension table")
     run_sql_file("sql/seed_dim_customer.sql")
 

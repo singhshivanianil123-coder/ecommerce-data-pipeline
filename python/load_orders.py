@@ -1,32 +1,35 @@
-import pandas as pd
-from datetime import datetime
+import os
 from snowflake_connection import get_connection
-
-df = pd.read_csv("data/orders.csv")
-
-df["created_timestamp"] = datetime.now()
 
 conn = get_connection()
 cursor = conn.cursor()
 
-for _, row in df.iterrows():
+# Path to CSV
+file_path = os.path.abspath("data/orders.csv")
 
-    cursor.execute(
-        """
-        INSERT INTO stg_orders
-        (order_id, customer_id, order_date, quantity, unit_price, created_timestamp)
-        VALUES (%s,%s,%s,%s,%s,%s)
-        """,
-        (
-            row["order_id"],
-            row["customer_id"],
-            row["order_date"],
-            int(row["quantity"]),
-            float(row["unit_price"]),
-            row["created_timestamp"]
-        )
-    )
+print("Uploading file to Snowflake stage...")
+
+cursor.execute(f"""
+PUT file://{file_path} @orders_stage
+AUTO_COMPRESS=TRUE
+OVERWRITE=TRUE
+""")
+
+print("Loading data into stg_orders...")
+
+cursor.execute("""
+COPY INTO stg_orders
+FROM @orders_stage
+FILE_FORMAT = (
+TYPE = CSV
+SKIP_HEADER = 1
+FIELD_OPTIONALLY_ENCLOSED_BY='"'
+)
+""")
 
 conn.commit()
+
 cursor.close()
 conn.close()
+
+print("CSV loaded successfully using COPY INTO")
